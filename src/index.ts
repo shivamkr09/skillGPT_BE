@@ -3,19 +3,12 @@ import contentGeneratorRouter  from './routes/generate';
 import cors from "cors";
 import { PORT } from './constants/constants';
 // import { getPgVersion } from './controllers/db';
-import rateLimit from 'express-rate-limit';
+
 
 const app = express();
 const port = PORT || 3000;
 
-// Rate limit middleware
-const limiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 4, // Max 4 requests per minute
-  message: 'Too many requests from this IP, please try again later.',
-});
 
-app.use(limiter);
 app.use(express.json());
 app.use(cors())
 
