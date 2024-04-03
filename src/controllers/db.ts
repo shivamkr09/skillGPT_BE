@@ -1,17 +1,17 @@
-import { neon } from '@neondatabase/serverless';
-import { Pool } from 'pg';
-import { PGUSER, PGHOST, PGDATABASE, PGPASSWORD, PGPORT, DATABASEURL } from '../constants/constants';
+// import { neon } from '@neondatabase/serverless';
+// import { Pool } from 'pg';
+// import { PGUSER, PGHOST, PGDATABASE, PGPASSWORD, PGPORT, DATABASEURL } from '../constants/constants';
 
-const pool = new Pool(
-  {
-    connectionString: DATABASEURL
-  }
-)
+// const pool = new Pool(
+//   {
+//     connectionString: DATABASEURL
+//   }
+// )
 
-async function getPgVersion() {
-  const result = await pool.query('SELECT * FROM BOOKS');
-  console.log(result);
-}
+// async function getPgVersion() {
+//   const result = await pool.query('SELECT * FROM BOOKS');
+//   console.log(result);
+// }
 // const sql = neon(DATABASEURL!)
 
 // async function getPgVersion() {
@@ -37,4 +37,4 @@ async function getPgVersion() {
   
 // }
 
-export { getPgVersion };
+// export { getPgVersion };
