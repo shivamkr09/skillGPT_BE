@@ -1,3 +1,4 @@
+const functions = require ("firebase-functions");
 import express, { Request, Response, NextFunction } from 'express';
 import contentGeneratorRouter  from './routes/generate';
 import userDataRouter from './routes/fetchUserData'
@@ -8,7 +9,6 @@ import { RAZORPAYKEYID,RAZORPAYKEYSECRET } from './constants/constants';
 import { updateUserDataRouter } from './routes/updateUserData';
 import { userAuthenticator } from './middlewares/authenticator';
 import { initializeFirebaseAdmin } from './utils/initFirebaseAdmin';
-import cors from 'cors'
 const app = express();
 initializeFirebaseAdmin();
 const port = PORT || 3000;
@@ -57,7 +57,9 @@ var instance = new Razorpay({
   key_secret: RAZORPAYKEYSECRET as string,
 });
 
-
+app.get('/', (req: Request, res: Response) => {
+    res.send('Hello from 3S.')
+  })
 app.get('/hello', (req: Request, res: Response) => {
   res.send('Hello from other world.')
 })
@@ -126,6 +128,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
-
-
-export default app;
+exports.app = functions.https.onRequest(app);
